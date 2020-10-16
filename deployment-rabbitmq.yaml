@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dedo-rabbit
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dedo-rabbit
+    spec:
+      containers:
+        - name: rabbitmq-container
+          image: rabbitmq:alpine
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "200m"
+            requests:
+              cpu: "200m"
+              memory: "500Mi"
+          env:
+            - name: RABBITMQ_ERLANG_COOKIE
+              value: "simplecookie"

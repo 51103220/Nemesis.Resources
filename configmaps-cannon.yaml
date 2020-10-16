@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  conf.json: |+
+    {
+        "app" : {
+            "name": "nemesis.cannon"
+        },
+        "transporter": {
+            "amqp": {
+                "address": "amqp://dedo-rabbit"
+            },
+            
+            "producer": {
+                "exchange": "nemesis.soul",
+                "routingKey": "smoke"
+            },
+            "consumer": {
+                "tag": "",
+                "autoAck": false,
+                "name": "nemesis.cannon"
+            }
+       }
+    }
+kind: ConfigMap
+metadata:
+  name: cannon-config
